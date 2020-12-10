@@ -98,7 +98,7 @@
     $(document).ready(function () {
 
       var d = new Date();
-      $('#Datum').val(d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + 'T' + d.getHours() + ':' + ('0' + d.getMinutes()).slice(-2));
+      $('#Datum').val(d.getFullYear() + '-' + ('0' + d.getMonth()).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) + 'T' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2));
 
       var max_fields = 10;
       var wrapper = $("#Paketi");
