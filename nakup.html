@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="sl">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="./img/Logo.svg">
+
+  <link rel="stylesheet" href="./style.css">
+
+  <title>Reichstag</title>
+</head>
+
+<body>
+
+  <div id="header">
+    <div class="logo">
+      <a href="./index.html">
+        <img id="logoImg" src="./img/Logo.svg" alt="Logo" />
+        <p>Reichstag</p>
+      </a>
+    </div>
+    <div class="right">
+      <a class="button" href="./index.html">Domov</a>
+      <a class="button" href="./zgodovina.html">Zgodovina</a>
+      <a class="button" href="./galerija.html">Galerija</a>
+      <a class="button" href="./omembe.html">Omembe</a>
+      <a class="button" href="./cenik.html">Cenik</a>
+      <a class="button" id="current" href="./nakup.html">Nakup</a>
+      <a class="button" href="./vstopnice.html">Vstopnice</a>
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="container">
+      <h1 class="Title">Nakup</h1>
+      <form id="form" action="/" method="POST">
+
+        <h3 class="center">Osnovni podatki</h3>
+
+        <fieldset>
+          <label for="Ime">Ime:</label><br />
+          <input type="text" id="Ime" name="Ime" placeholder="Janez" required /><br />
+          <label for="Priimek">Priimek:</label><br />
+          <input type="text" id="Priimek" name="Priimek" placeholder="Novak" required /><br />
+          <label for="Starost">Starost:</label><br />
+          <input type="number" id="Starost" name="Starost" min="18" max="99" value="18" required /><br />
+          <label for="E-mail">E-mail:</label><br />
+          <input type="email" id="E-mail" name="E-mail" placeholder="Janez.Novak@email.com" required /><br />
+          <label for="Telefon">Telefon:</label><br />
+          <input type="tel" id="Telefon" name="Telefon" placeholder="123-456-789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+            required /><br />
+        </fieldset>
+
+        <h3 class="center">Izbira paketa</h3>
+
+        <fieldset id="Paketi">
+          <label for="Datum">Datum:</label><br />
+          <input type="datetime-local" id="Datum" name="Datum" required/><br />
+
+          <button class="add_form_field">Dodaj Paket</button>
+        </fieldset>
+        <br />
+        <input type="submit" value="Kupi" name="Submit"><br />
+
+      </form>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div>
+      <div>
+        David Jan © 2020
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+
+    $('form').submit(function (e) {
+      e.preventDefault(); // prevents page reloading
+      sessionStorage.clear();
+      if (confirm("Potrdite za nakup vstopnic.") == true) {
+        $('input, select').each(function (index, data) {
+          sessionStorage.setItem($(this).attr('name'), $(this).val());
+        });
+        document.getElementById("form").reset();
+        alert("Uspešen nakup!");
+      } else {
+        alert("Nakup zavrnjen!");
+      }
+
+    });
+
+    $(document).ready(function () {
+
+      var d = new Date();
+      $('#Datum').val(d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + 'T' + d.getHours() + ':' + ('0' + d.getMinutes()).slice(-2));
+
+      var max_fields = 10;
+      var wrapper = $("#Paketi");
+      var add_button = $(".add_form_field");
+
+      var x = 0;
+      $(add_button).click(function (e) {
+        e.preventDefault();
+        if (x < max_fields) {
+          x++;
+          $(wrapper).append('<fieldset>' +
+            '<label for="Paket' + x + '">Paketi:</label><br />' +
+            '<select id="Paket' + x + '" name="Paket' + x + '" >' +
+            '<option value="Otroci, dijaki, študentje - Ogled Kupole">Otroci, dijaki, študentje - Ogled Kupole</option>' +
+            '<option value="Upokojenci - Ogled Kupole">Upokojenci - Ogled Kupole</option>' +
+            '<option value="Odrasli - Ogled Kupole">Odrasli - Ogled Kupole</option>' +
+            '<option value="Otroci, dijaki, študentje - Ogled Reichstag">Otroci, dijaki, študentje - Ogled Reichstag</option>' +
+            '<option value="Upokojenci - Ogled Reichstag">Upokojenci - Ogled Reichstag</option>' +
+            '<option value="Odrasli - Ogled Reichstag">Odrasli - Ogled Reichstag</option>' +
+            '<option value="Rezervacija v Restavraciji">Rezervacija v Restavraciji (na osebo)</option>' +
+            '<option value="Družinski Paket">Družinski Paket</option>' +
+            '<option value="Družinski Paket z rezervacijo">Družinski Paket z rezervacijo</option>' +
+            '<option value="Skupinjski Paket">Skupinjski Paket (10+)</option>' +
+            '<option value="Skupinjski Paket z rezervacijo">Skupinjski Paket (10+) z rezervacijo</option>' +
+            '<option value="Dodatna oseba za Skupinjski Paket">Dodatna oseba za Skupinjski Paket (10+)</option>' +
+            '<option value="Dodatna oseba za Skupinjski Paket z rezervacijo">Dodatna oseba za Skupinjski Paket (10+) z rezervacijo</option>' +
+            '</select><br />' +
+            '<label for="Število' + x + '">Paketi:</label><br />' +
+            '<input type="number" id="Število' + x + '" name="Število' + x + '" min="1" max="99" value="1" /><br />' +
+            '<a href="#" class="delete">Izbriši</a></fieldset>'); //add input box
+
+
+        } else {
+          alert('You Reached the limits')
+        }
+      });
+
+      $(wrapper).on("click", ".delete", function (e) {
+        e.preventDefault();
+        $(this).parent('fieldset').remove();
+        x--;
+      })
+    });
+  </script>
+
+</body>
+
+</html>
