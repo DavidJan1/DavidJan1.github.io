@@ -36,13 +36,21 @@ span.cssbox_full img {
 
 a.cssbox_close,
 a.cssbox_prev,
-a.cssbox_next {
+a.cssbox_next,
+i.cssbox_lable {
   z-index: 999999;
   position: fixed;
   text-decoration: none;
   visibility: hidden;
-  color: white;
+  color: #33ff33;
   font-size: 36px;
+}
+
+i.cssbox_lable{
+  top: 0%;
+  left: 0%;
+  width: fit-content;
+  text-align: right;
 }
 
 a.cssbox_close {
@@ -70,7 +78,8 @@ a.cssbox_next {
 
 a:target ~ a.cssbox_close,
 a:target ~ a.cssbox_prev,
-a:target ~ a.cssbox_next {
+a:target ~ a.cssbox_next,
+a:target ~ i.cssbox_lable {
   visibility: visible;
 }
 
