@@ -8,7 +8,7 @@
 
   <link rel="icon" href="./img/Logo.svg">
 
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./css/style.css">
 
   <title>Reichstag</title>
 </head>
@@ -87,8 +87,10 @@
         $('input, select').each(function (index, data) {
           sessionStorage.setItem($(this).attr('name'), $(this).val());
         });
+        $("#Paketi").children('fieldset').remove();
         document.getElementById("form").reset();
         alert("Uspešen nakup!");
+        window.location.replace('./vstopnice.html');
       } else {
         alert("Nakup zavrnjen!");
       }
