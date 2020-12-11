@@ -2,6 +2,7 @@
    Attribution-ShareAlike 4.0 license and is available on
    https://github.com/TheLastProject/CSSBox. You are not required to add
    additional credit to your website, just leave the above text in this file */
+
 div.cssbox {
   display: inline-block;
 }
@@ -76,6 +77,7 @@ a.cssbox_next {
   right: 5%;
 }
 
+@media only screen and (min-width: 750px){
 a:target ~ a.cssbox_close,
 a:target ~ a.cssbox_prev,
 a:target ~ a.cssbox_next,
@@ -87,5 +89,7 @@ a:target > img.cssbox_thumb + span.cssbox_full {
   visibility: visible;
   opacity: 1;
   pointer-events: initial;
+}
+
 }
 /* This is the end of CSSBox */
