@@ -8,6 +8,7 @@
 
 	<link rel="icon" href="./img/Logo.svg">
 
+	<link rel="stylesheet" href="./cssbox.css">
 	<link rel="stylesheet" href="./style.css">
 
 	<title>Reichstag</title>
@@ -29,19 +30,14 @@
 			<a class="button" href="./omembe.html">Omembe</a>
 			<a class="button" href="./cenik.html">Cenik</a>
 			<a class="button" href="./nakup.html">Nakup</a>
-      <a class="button" href="./vstopnice.html">Vstopnice</a>
+			<a class="button" href="./vstopnice.html">Vstopnice</a>
 		</div>
 	</div>
 
 	<div id="main">
 		<div class="container">
 			<h1 class="Title">Galerija</h1>
-			<a href="./img/Reichstag.png"><img class="gallery-item" src="./img/Reichstag.png" alt="Reichstag" /></a>
-			<a href="./img/Reichstag_1970.png"><img class="gallery-item" src="./img/Reichstag_1970.png" alt="Reichstag 1970" /></a>
-			<a href="./img/Reichstag_at_night.png"><img class="gallery-item" src="./img/Reichstag_at_night.png" alt="Reichstag 2013" /></a>
-			<a href="./img/Reichstag_und_Siegessäule_1900.png"><img class="gallery-item" src="./img/Reichstag_und_Siegessäule_1900.png" alt="Reichstag 1900" /></a>
-			<a href="./img/Reichstagsbrand_fire.png"><img class="gallery-item" src="./img/Reichstagsbrand_fire.png" alt="Reichstag fire" /></a>
-			<a href="./img/Ruins_of_the_Reichstag_3_June_1945.png"><img class="gallery-item" src="./img/Ruins_of_the_Reichstag_3_June_1945.png" alt="Reichstag 1945" /></a>
+			<div id="Gallery" class="gallery-flex" ></div>
 		</div>
 	</div>
 
@@ -53,8 +49,44 @@
 		</div>
 	</div>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 
+		const images = [
+			{ src: './img/Reichstag.png'},
+			{ src: './img/Reichstag_1970.png'},
+			{ src: './img/Reichstag_at_night.png'},
+			{ src: './img/Reichstag_und_Siegessäule_1900.png'},
+			{ src: './img/Reichstagsbrand_fire.png'},
+			{ src: './img/Ruins_of_the_Reichstag_3_June_1945.png'}
+		];
+
+		function getIndex(Index){
+			if(Index == 0)
+				return images.length;
+			else if(Index == images.length+1)
+				return 1;
+			else
+				return Index;
+		}
+
+		var imgIndex = 1;
+		$(document).ready(function () {
+			images.map(function (imageProps) {
+				$('#Gallery').append(	'<div class="cssbox">'+
+																'<a id="image' + imgIndex + '" href="#image' + imgIndex + '">'+
+																	'<img class="cssbox_thumb gallery-item" src="' + imageProps.src + '">'+
+																	'<span class="cssbox_full">'+
+																		'<img src="' + imageProps.src + '">'+
+																	'</span>'+
+																'</a>'+
+																'<a class="cssbox_close" href="#void"></a>'+
+																'<a class="cssbox_prev" href="#image' + getIndex(imgIndex-1) + '">&lt;</a>'+
+																'<a class="cssbox_next" href="#image' + getIndex(imgIndex+1) + '">&gt;</a>'+
+															'</div>');
+				imgIndex++;
+			});
+		}); 
 	</script>
 
 </body>

@@ -1,3 +1,4 @@
+/*Main divs*/
 body{
     height: 100vh;
     padding: 0px;
@@ -11,6 +12,22 @@ body{
     padding: 15px;
 }
 
+#main{
+    display: block;
+    min-height: 80%;
+}
+
+#footer{
+    border-top: 1px solid #33FF33;
+    background-color: #282828;
+    color:#33FF33;
+    padding: 15px;
+    text-align: center;
+    height: auto;
+}
+/*Main divs*/
+
+/*Header*/
 .logo{
     display: inline-block;
 }
@@ -63,22 +80,26 @@ body{
     background-color: #282828;
     color: #33FF33;
 }
+/*Header*/
 
-#main{
-    display: block;
-    min-height: 80%;
-}
 
+/*Text*/
 p, h1, h2, h3, i {
     color: #33FF33;
 }
+/*Text*/
 
+/*List*/
 ol, ul, li > a{
     color: #33FF33;
 }
 
 ol > li{
     font-size: 26px;
+}
+
+ul > li{
+    list-style-type: '\26E7';
 }
 
 li > a:visited{
@@ -88,6 +109,7 @@ li > a:visited{
 li > a:hover{
     color: #ffb000;
 }
+/*List*/
 
 hr{
     border: 0px;
@@ -95,6 +117,7 @@ hr{
     border-color: #33FF33;
 }
 
+/*Main*/
 .container{
     min-height: 77vh;
     width: 70%;
@@ -122,13 +145,6 @@ hr{
     height: fit-content;
 }
 
-table, tr, th, td{
-    border: 1px solid #33FF33;
-    border-collapse: collapse;
-    color: #33FF33;
-    margin: auto;
-}
-
 .Title{
     text-align: center;
     border-bottom: 1px solid #33FF33;
@@ -140,19 +156,32 @@ table, tr, th, td{
 .center{
     text-align: center;
 }
+/*Main*/
 
+/*Table*/
+table, tr, th, td{
+    border: 1px solid #33FF33;
+    border-collapse: collapse;
+    color: #33FF33;
+    margin: auto;
+}
+/*Table*/
+
+/*Gallery*/
 .gallery-item{
     height: 250px;
 }
 
-#footer{
-    border-top: 1px solid #33FF33;
-    background-color: #282828;
-    color:#33FF33;
-    padding: 15px;
-    text-align: center;
-    height: auto;
+.gallery-flex{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
 }
+
+.cssbox{
+    margin: 5px;
+}
+/*Gallery*/
 
 /*Form*/
 form{
