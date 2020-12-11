@@ -322,6 +322,7 @@ background: #33FF33;
 }
 
 @media only screen and (max-width: 500px){
+
     .flex{
         display: block;
     }
@@ -342,5 +343,9 @@ background: #33FF33;
 
     .padding-left, .padding-right{
         padding: 0px;
+    }
+
+    p{
+        text-align: justify;
     }
 }
