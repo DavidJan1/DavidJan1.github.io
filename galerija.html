@@ -53,12 +53,12 @@
 	<script>
 
 		const images = [
-			{ src: './img/Reichstag.png'},
-			{ src: './img/Reichstag_1970.png'},
-			{ src: './img/Reichstag_at_night.png'},
-			{ src: './img/Reichstag_und_Siegessäule_1900.png'},
-			{ src: './img/Reichstagsbrand_fire.png'},
-			{ src: './img/Ruins_of_the_Reichstag_3_June_1945.png'}
+			{ src: './img/Reichstag.png', alt:'Reichstag'},
+			{ src: './img/Reichstag_1970.png', alt:'Reichstag 1970'},
+			{ src: './img/Reichstag_at_night.png', alt:'Reichstag 2013'},
+			{ src: './img/Reichstag_und_Siegessäule_1900.png', alt:'Reichstag in Siegessäule 1900'},
+			{ src: './img/Reichstagsbrand_fire.png', alt:'Reichstag požar 1933'},
+			{ src: './img/Ruins_of_the_Reichstag_3_June_1945.png', alt:'Reichstag 1945'}
 		];
 
 		function getIndex(Index){
@@ -75,14 +75,15 @@
 			images.map(function (imageProps) {
 				$('#Gallery').append(	'<div class="cssbox">'+
 																'<a id="image' + imgIndex + '" href="#image' + imgIndex + '">'+
-																	'<img class="cssbox_thumb gallery-item" src="' + imageProps.src + '">'+
+																	'<img class="cssbox_thumb gallery-item" src="' + imageProps.src + '" alt="' + imageProps.alt + '">'+
 																	'<span class="cssbox_full">'+
-																		'<img src="' + imageProps.src + '">'+
+																		'<img src="' + imageProps.src + '" alt="' + imageProps.alt + '">'+
 																	'</span>'+
 																'</a>'+
 																'<a class="cssbox_close" href="#void"></a>'+
 																'<a class="cssbox_prev" href="#image' + getIndex(imgIndex-1) + '">&lt;</a>'+
 																'<a class="cssbox_next" href="#image' + getIndex(imgIndex+1) + '">&gt;</a>'+
+																'<br /><i>'+imageProps.alt+'<i>'+
 															'</div>');
 				imgIndex++;
 			});

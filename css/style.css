@@ -156,6 +156,18 @@ hr{
 .center{
     text-align: center;
 }
+
+.img{
+    width: 100%;
+}
+
+.padding-left{
+    padding-left: 15px;
+}
+
+.padding-right{
+    padding-right: 15px;
+}
 /*Main*/
 
 /*Table*/
@@ -169,7 +181,8 @@ table, tr, th, td{
 
 /*Gallery*/
 .gallery-item{
-    height: 250px;
+    max-height: 250px;
+    width: auto;
 }
 
 .gallery-flex{
@@ -259,4 +272,75 @@ border-radius: 10px;
 
 ::-webkit-scrollbar-thumb:hover {
 background: #33FF33; 
+}
+
+/*Media*/
+
+@media only screen and (max-width: 750px){
+
+    body{
+        width: auto;
+        display: block;
+    }
+
+    #header, #footer, #main{
+        width: 100%;
+    }
+
+    #main .container{
+        width: 99%;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    #header, .logo{
+        display: block;
+        text-align: center;
+    }
+    
+    .right{
+        display: block;
+        padding: 5px;
+    }
+
+    .button{
+        display: inline-block;
+        margin-top: 5px;
+    }
+
+    form, select{
+        width: 100%;
+    }
+
+    fieldset{
+        width: auto;
+    }
+
+    .img, .cssbox > a{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .flex{
+        display: block;
+    }
+
+    .half{
+        display: block;
+        width: auto;
+    }
+
+    .border-left{
+        display: none;
+    }
+
+    .gallery-item, .img{
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .padding-left, .padding-right{
+        padding: 0px;
+    }
 }
