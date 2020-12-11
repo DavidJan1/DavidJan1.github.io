@@ -12,11 +12,11 @@
 
 	<title>Reichstag</title>
 	<style>
-		#main p{
+		#main p {
 			margin: 0px;
 		}
 
-		.float-right{
+		.float-right {
 			float: right;
 		}
 
@@ -33,15 +33,16 @@
 			}
 
 			#header .right,
-			#footer, .button {
+			#footer,
+			.button {
 				display: none;
 			}
 
-			#header{
+			#header {
 				border: 0px;
 			}
 
-			#logoImg{
+			#logoImg {
 				filter: brightness(0);
 			}
 
@@ -86,7 +87,8 @@
 			<hr />
 			<p id="Cena">Skupaj: </p>
 			<button class="button" style="width: 100px;" onclick="window.print()">Tiskaj</button>
-
+			<br />
+			<button class="button" style="width: 100px;" onclick="preklic()">Prekliči</button>
 		</div>
 	</div>
 
@@ -100,105 +102,113 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
+		function preklic() {
+			sessionStorage.clear();
+			$("#Osebno").children().remove();
+			$("#Paketi").children().remove();
+			$("#Cena").text("Skupaj: 0.00 €");
+		}
+
 		$(document).ready(function () {
 			for (var i = 0; i < sessionStorage.length; i++) {
-				if(("ImePriimek".indexOf(sessionStorage.key(i).slice(0, -1) ) >= 0 ))
-				$('#Osebno').append('<p>' + sessionStorage.key(i) + ': ' + sessionStorage.getItem(sessionStorage.key(i)) + '</p>');
+				if (("ImePriimek".indexOf(sessionStorage.key(i).slice(0, -1)) >= 0))
+					$('#Osebno').append('<p>' + sessionStorage.key(i) + ': ' + sessionStorage.getItem(sessionStorage.key(i)) + '</p>');
 			}
 			for (var i = 0; i < sessionStorage.length; i++) {
-				if(!("Paket1Število1DatumSubmitImePriimek".indexOf(sessionStorage.key(i).slice(0, -1) ) >= 0 ))
-				$('#Osebno').append('<p>' + sessionStorage.key(i) + ': ' + sessionStorage.getItem(sessionStorage.key(i)) + '</p>');
+				if (!("Paket1Število1DatumSubmitImePriimekPripomba".indexOf(sessionStorage.key(i).slice(0, -1)) >= 0))
+					$('#Osebno').append('<p>' + sessionStorage.key(i) + ': ' + sessionStorage.getItem(sessionStorage.key(i)) + '</p>');
 			}
+			$('#Osebno').append('<p style="word-wrap: break-word;"> Pripomba: ' + sessionStorage.getItem('Pripomba') + '</p>');
 
 			var cena = 0.00;
-			
+
 			for (var i = 1; i <= 10; i++) {
-				if((sessionStorage.getItem('Paket'+i) != null) && (sessionStorage.getItem('Število'+i) != null)){
-					$('#Paketi').append('<p id="Paket'+i+'" class="float-right"></p>');
-					$('#Paketi').append('<p>Paket: ' + sessionStorage.getItem('Paket'+i) + '</p>');
-					$('#Paketi').append('<p>Število: ' + sessionStorage.getItem('Število'+i) + '</p>');
-					switch(sessionStorage.getItem('Paket'+i)){
+				if ((sessionStorage.getItem('Paket' + i) != null) && (sessionStorage.getItem('Število' + i) != null)) {
+					$('#Paketi').append('<p id="Paket' + i + '" class="float-right"></p>');
+					$('#Paketi').append('<p>Paket: ' + sessionStorage.getItem('Paket' + i) + '</p>');
+					$('#Paketi').append('<p>Število: ' + sessionStorage.getItem('Število' + i) + '</p>');
+					switch (sessionStorage.getItem('Paket' + i)) {
 						case 'Otroci, dijaki, študentje - Ogled Kupole':
-							var c = 2.50 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 2.50 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Upokojenci - Ogled Kupole':
-							var c = 4.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 4.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Odrasli - Ogled Kupole':
-							var c = 6.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 6.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Otroci, dijaki, študentje - Ogled Reichstag':
-							var c = 7.50 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 7.50 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Upokojenci - Ogled Reichstag':
-							var c = 9.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 9.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Odrasli - Ogled Reichstag':
-							var c = 11.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 11.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Rezervacija v Restavraciji':
-							var c = 5.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 5.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Družinski Paket':
-							var c = 50.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 50.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Družinski Paket z rezervacijo':
-							var c = 60.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 60.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Skupinjski Paket':
-							var c = 150.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 150.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Skupinjski Paket z rezervacijo':
-							var c = 180.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 180.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Dodatna oseba za Skupinjski Paket':
-							var c = 5.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 5.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 
 						case 'Dodatna oseba za Skupinjski Paket z rezervacijo':
-							var c = 3.00 * parseFloat(sessionStorage.getItem('Število'+i));
+							var c = 3.00 * parseFloat(sessionStorage.getItem('Število' + i));
 							cena += c;
-							$('#Paket'+i).append(parseFloat(c).toFixed(2) + ' €');
-						break;
+							$('#Paket' + i).append(parseFloat(c).toFixed(2) + ' €');
+							break;
 					}
 
 					$('#Paketi').append('<hr />');
-	
+
 				}
 			}
 			$('#Cena').append(parseFloat(cena).toFixed(2) + ' €');

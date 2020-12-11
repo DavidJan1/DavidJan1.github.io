@@ -50,15 +50,16 @@
           <label for="E-mail">E-mail:</label><br />
           <input type="email" id="E-mail" name="E-mail" placeholder="Janez.Novak@email.com" required /><br />
           <label for="Telefon">Telefon:</label><br />
-          <input type="tel" id="Telefon" name="Telefon" placeholder="080123123" pattern="[0-9]{9}"
-            required /><br />
+          <input type="tel" id="Telefon" name="Telefon" placeholder="080123123" pattern="[0-9]{9}" required /><br />
+          <label for="Pripomba">Pripomba:</label><br />
+          <textarea rows="4" cols="50" id="Pripomba" name="Pripomba" form="form" placeholder="Napišite svojo pripomba..."></textarea><br />
         </fieldset>
 
         <h3 class="center">Izbira paketa</h3>
 
         <fieldset id="Paketi">
           <label for="Datum">Datum:</label><br />
-          <input type="datetime-local" id="Datum" name="Datum" required/><br />
+          <input type="datetime-local" id="Datum" name="Datum" required /><br />
 
           <button class="add_form_field">Dodaj Paket</button>
         </fieldset>
@@ -84,7 +85,7 @@
       e.preventDefault(); // prevents page reloading
       sessionStorage.clear();
       if (confirm("Potrdite za nakup vstopnic.") == true) {
-        $('input, select').each(function (index, data) {
+        $('input, select, textarea').each(function (index, data) {
           sessionStorage.setItem($(this).attr('name'), $(this).val());
         });
         $("#Paketi").children('fieldset').remove();
