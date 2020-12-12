@@ -21,7 +21,7 @@ span.cssbox_full {
   transition: opacity 0.5s linear;
 }
 
-span.cssbox_full img {
+span.cssbox_full img{
   position: fixed;
   background-color: white;
   margin: 0;

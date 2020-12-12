@@ -293,6 +293,10 @@ background: #33FF33;
 
 @media only screen and (max-width: 750px){
 
+    #glink{
+        display: none;
+    }
+
     body{
         width: auto;
         display: block;

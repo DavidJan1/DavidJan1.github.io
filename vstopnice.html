@@ -118,7 +118,9 @@
 				if (!("Paket1Število1DatumSubmitImePriimekPripomba".indexOf(sessionStorage.key(i).slice(0, -1)) >= 0))
 					$('#Osebno').append('<p>' + sessionStorage.key(i) + ': ' + sessionStorage.getItem(sessionStorage.key(i)) + '</p>');
 			}
-			$('#Osebno').append('<p style="word-wrap: break-word;"> Pripomba: ' + sessionStorage.getItem('Pripomba') + '</p>');
+			if(sessionStorage.getItem('Pripomba') != null){
+				$('#Osebno').append('<p style="word-wrap: break-word;"> Pripomba: ' + sessionStorage.getItem('Pripomba') + '</p>');
+			}
 
 			var cena = 0.00;
 
